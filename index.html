@@ -170,7 +170,7 @@
             box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
         }
 
-        /* Sekcja: Co robimy */
+        /* Sekcja: Ogólna dla boksów */
         .section {
             padding: 100px 8%;
             text-align: center;
@@ -179,7 +179,14 @@
         .section-title {
             font-size: 2.5rem;
             font-weight: 800;
-            margin-bottom: 50px;
+            margin-bottom: 20px;
+        }
+
+        .section-desc {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 60px auto;
+            font-size: 1.1rem;
         }
 
         .services-grid {
@@ -218,21 +225,40 @@
             font-size: 0.95rem;
         }
 
-        /* Sekcja: Informacje i Statystyki */
+        /* Sekcja: Informacje i Statystyki (O nas) */
+        .about-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 50px;
+            text-align: left;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text p {
+            color: var(--text-muted);
+            margin-bottom: 20px;
+            font-size: 1.05rem;
+        }
+
         .stats-container {
             display: flex;
-            justify-content: space-around;
-            flex-wrap: wrap;
-            gap: 40px;
+            justify-content: space-between;
+            gap: 20px;
             background: var(--card-bg);
-            padding: 50px;
+            padding: 30px;
             border-radius: 16px;
-            margin-top: 30px;
             border: 1px solid rgba(255, 255, 255, 0.01);
+            margin-top: 30px;
         }
 
         .stat-item h2 {
-            font-size: 3rem;
+            font-size: 2.5rem;
             background: linear-gradient(to right, var(--accent-blue), var(--accent-yellow));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
@@ -241,23 +267,65 @@
 
         .stat-item p {
             color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        .about-logo-box {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .about-logo-img {
+            max-width: 300px;
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 0 20px rgba(0, 132, 255, 0.15));
+        }
+
+        /* Sekcja: Kontakt */
+        .contact-box {
+            background: linear-gradient(135deg, #0c1322 0%, #111a30 100%);
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 50px;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+        }
+
+        .contact-box h3 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-box p {
+            color: var(--text-muted);
+            margin-bottom: 35px;
         }
 
         /* Stopka */
         footer {
-            padding: 60px 8% 40px 8%;
+            padding: 40px 8%;
             text-align: center;
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             color: var(--text-muted);
             font-size: 0.9rem;
+            background: #030509;
         }
 
         /* RWD - Dostosowanie do telefonów */
+        @media (max-width: 900px) {
+            .about-content { flex-direction: column-reverse; text-align: center; }
+            .stats-container { justify-content: center; flex-wrap: wrap; gap: 30px; }
+        }
+
         @media (max-width: 768px) {
             header h1 { font-size: 2.5rem; }
             .nav-links { display: none; }
-            .stats-container { flex-direction: column; }
             .hero-logo { width: 130px; }
+            .contact-box { padding: 30px; }
         }
     </style>
 </head>
@@ -276,7 +344,7 @@
         </ul>
     </nav>
 
-    <!-- Sekcja Główna -->
+    <!-- Sekcja Główna (Hero) -->
     <header id="top">
         <a href="#top" class="hero-logo-link">
             <img src="VoltCode.png" alt="VoltCode Duże Logo" class="hero-logo">
@@ -285,18 +353,3 @@
         <p>Zajmujemy się profesjonalnym programowaniem dedykowanych pluginów, pisaniem zaawansowanych skryptów oraz kompleksową konfiguracją serwerów Discord.</p>
         
         <!-- PAMIĘTAJ O PODMIANIE LINKU DISCORDA PONIŻEJ -->
-        <a href="https://discord.gg" target="_blank" class="btn btn-discord">
-            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
-                <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.214 12.214 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032a.054.054 0 0 0 .022.035a13.28 13.28 0 0 0 3.994 2.02.051.051 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.027-.07 8.825 8.825 0 0 1-1.248-.595.051.051 0 0 1-.005-.085c.085-.063.169-.129.249-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.595.05.05 0 0 0-.027.07c.236.465.51.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02a.049.049 0 0 0 .021-.035c.374-3.417-.667-6.405-2.65-9.004a.04.04 0 0 0-.02-.019zM5.02 9.592c-.793 0-1.44-.725-1.44-1.615 0-.89.633-1.615 1.44-1.615.808 0 1.45.724 1.44 1.615 0 .89-.632 1.615-1.44 1.615zm5.96 0c-.793 0-1.44-.725-1.44-1.615 0-.89.633-1.615 1.44-1.615.808 0 1.45.724 1.44 1.615 0 .89-.63 1.615-1.44 1.615z"/>
-            </svg>
-            Dołącz do Discorda
-        </a>
-    </header>
-
-    <!-- Sekcja: Co robimy -->
-    <section class="section" id="co-robimy">
-        <h2 class="section-title">Co oferujemy w VoltCode?</h2>
-        <div class="services-grid">
-            <div class="card">
-                <span class="card-icon" style="color: var(--accent-blue);">⚙️</span>
-                <h3>Dedykowane Pluginy</h3>
