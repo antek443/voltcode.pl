@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VoltCode.pl - Profesjonalne Pluginy, Skrypty i Discord</title>
+    <!-- Czcionka Inter dla nowoczesnego wyglądu -->
+    <link href="https://googleapis.com" rel="stylesheet">
+    <style>
+        :root {
+            --bg-color: #0b0f19;
+            --card-bg: #141b2d;
+            --accent-color: #4f46e5;
+            --accent-glow: #6366f1;
+            --text-main: #f3f4f6;
+            --text-muted: #9ca3af;
+            --discord-color: #5865F2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Inter', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Nawigacja */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 8%;
+            background: rgba(11, 15, 25, 0.8);
+            backdrop-filter: blur(12px);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 800;
+            letter-spacing: 1px;
+            background: linear-gradient(45deg, #fff, var(--accent-glow));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-main);
+        }
+
+        /* Sekcja Główna (Hero) */
+        header {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            background: radial-gradient(circle at center, rgba(79, 70, 229, 0.1) 0%, transparent 60%);
+            margin-top: 60px;
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        header h1 span {
+            color: var(--accent-glow);
+            text-shadow: 0 0 30px rgba(99, 102, 241, 0.3);
+        }
+
+        header p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            max-width: 600px;
+            margin-bottom: 40px;
+        }
+
+        /* Przyciski */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            padding: 14px 28px;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+        }
+
+        .btn-discord {
+            background-color: var(--discord-color);
+            color: white;
+            box-shadow: 0 4px 15px rgba(88, 101, 242, 0.4);
+        }
+
+        .btn-discord:hover {
+            background-color: #4752c4;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(88, 101, 242, 0.6);
+        }
+
+        /* Sekcja: Co robimy */
+        .section {
+            padding: 100px 8%;
+            text-align: center;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 800;
+            margin-bottom: 50px;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: var(--card-bg);
+            padding: 40px 30px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.3s, border-color 0.3s;
+            text-align: left;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(99, 102, 241, 0.3);
+        }
+
+        .card-icon {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            display: inline-block;
+        }
+
+        .card h3 {
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        /* Sekcja: Informacje i Statystyki */
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            gap: 40px;
+            background: var(--card-bg);
+            padding: 50px;
+            border-radius: 16px;
+            margin-top: 30px;
+        }
+
+        .stat-item h2 {
+            font-size: 3rem;
+            color: var(--accent-glow);
+            font-weight: 800;
+        }
+
+        .stat-item p {
+            color: var(--text-muted);
+        }
+
+        /* Stopka */
+        footer {
+            padding: 40px 8%;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* RWD - Dostosowanie do telefonów */
+        @media (max-width: 768px) {
+            header h1 { font-size: 2.5rem; }
+            .nav-links { display: none; }
+            .stats-container { flex-direction: column; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Nawigacja -->
+    <nav>
+        <div class="logo">VOLTCODE</div>
+        <ul class="nav-links">
+            <li><a href="#co-robimy">Co robimy</a></li>
+            <li><a href="#o-nas">O nas</a></li>
+            <li><a href="#kontakt">Kontakt</a></li>
+        </ul>
+    </nav>
+
+    <!-- Sekcja Główna -->
+    <header>
+        <h1>Tworzymy cyfrową jakość dla <span>Twojego projektu</span></h1>
+        <p>Zajmujemy się profesjonalnym programowaniem dedykowanych pluginów, pisaniem zaawansowanych skryptów oraz kompleksową konfiguracją serwerów Discord.</p>
+        <!-- TUTAJ WKLEJ SWÓJ LINK DO DISCORDA ZAMIAST '#' -->
+        <a href="https://discord.gg" target="_blank" class="btn btn-discord">
+            <svg width="20" height="20" fill="currentColor" viewBox="0 0 16 16" style="vertical-align: middle;">
+                <path d="M13.545 2.907a13.227 13.227 0 0 0-3.257-1.011.05.05 0 0 0-.052.025c-.141.25-.297.577-.406.833a12.214 12.214 0 0 0-3.658 0 8.258 8.258 0 0 0-.412-.833.051.051 0 0 0-.052-.025c-1.125.194-2.22.534-3.257 1.011a.041.041 0 0 0-.021.018C.356 6.024-.213 9.047.066 12.032a.054.054 0 0 0 .022.035a13.28 13.28 0 0 0 3.994 2.02.051.051 0 0 0 .056-.019c.308-.42.582-.863.818-1.329a.05.05 0 0 0-.027-.07 8.825 8.825 0 0 1-1.248-.595.051.051 0 0 1-.005-.085c.085-.063.169-.129.249-.195a.05.05 0 0 1 .051-.007c2.619 1.196 5.454 1.196 8.041 0a.052.052 0 0 1 .053.007c.08.066.164.132.248.195a.051.051 0 0 1-.004.085 8.254 8.254 0 0 1-1.249.595.05.05 0 0 0-.027.07c.236.465.51.909.817 1.329a.05.05 0 0 0 .056.019 13.235 13.235 0 0 0 4.001-2.02a.049.049 0 0 0 .021-.035c.374-3.417-.667-6.405-2.65-9.004a.04.04 0 0 0-.02-.019zM5.02 9.592c-.793 0-1.44-.725-1.44-1.615 0-.89.633-1.615 1.44-1.615.808 0 1.45.724 1.44 1.615 0 .89-.632 1.615-1.44 1.615zm5.96 0c-.793 0-1.44-.725-1.44-1.615 0-.89.633-1.615 1.44-1.615.808 0 1.45.724 1.44 1.615 0 .89-.63 1.615-1.44 1.615z"/>
+            </svg>
+            Dołącz do Discorda
+        </a>
+    </header>
+
+    <!-- Sekcja: Co robimy -->
+    <section class="section" id="co-robimy">
+        <h2 class="section-title">Co oferujemy w VoltCode?</h2>
+        <div class="services-grid">
+            <div class="card">
+                <span class="card-icon">⚙️</span>
+                <h3>Dedykowane Pluginy</h3>
+                <p>Tworzymy unikalne, zoptymalizowane wtyczki dopasowane do silników Twoich serwerów. Bez lagów, z pełną konfiguracją.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">📜</span>
+                <h3>Niestandardowe Skrypty</h3>
+                <p>Automatyzacja procesów, szybkie systemy mechanik i skrypty użytkowe, które ułatwiają zarządzanie każdym projektem.</p>
+            </div>
+            <div class="card">
+                <span class="card-icon">💬</span>
+                <h3>Zarządzanie i Boty DC</h3>
+                <p>Projektujemy zaawansowane serwery Discord. Konfigurujemy uprawnienia, kanały oraz programujemy boty, które ożywią Twoją społeczność.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sekcja: Informacje (O nas) -->
+    <section class="section" id="o-nas" style="background: rgba(255,255,255,0.01);">
+        <h2 class="section-title">Dlaczego my?</h2>
+        <p style="color: var(--text-muted); max-width: 800px; margin: 0 auto 50px auto;">
+            VoltCode to zespół pasjonatów programowania i administracji. Każde powierzone nam zadanie traktujemy priorytetowo, dbając o czystość kodu oraz najwyższy poziom bezpieczeństwa Twojego serwera.
+        </p>
+        <div class="stats-container">
+            <div class="stat-item">
+                <h2>100%</h2>
+                <p>Optymalizacji</p>
+            </div>
+            <div class="stat-item">
+                <h2>24/7</h2>
+                <p>Wsparcia na DC</p>
+            </div>
+            <div class="stat-item">
+                <h2>Szybka</h2>
+                <p>Realizacja</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stopka -->
+    <footer id="kontakt">
+        <p>&copy; 2026 voltcode.pl. Wszystkie prawa zastrzeżone.</p>
+        <p style="margin-top: 10px; font-size: 0.8rem; color: #555;">Hosted with GitHub Pages</p>
